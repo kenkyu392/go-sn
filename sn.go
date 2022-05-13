@@ -15,18 +15,18 @@ const (
 	DefaultDelimiter = "-"
 )
 
-// Generator ...
-type Generator struct {
-	Delimiter string
-	Rules     []rule.Rule
-}
-
-// NewGenerator ...
+// NewGenerator returns a new generator based on rules.
 func NewGenerator(rules ...rule.Rule) *Generator {
 	return &Generator{
 		Delimiter: DefaultDelimiter,
 		Rules:     rules,
 	}
+}
+
+// Generator has a String function that generates data based on rules.
+type Generator struct {
+	Delimiter string
+	Rules     []rule.Rule
 }
 
 // String implements fmt.Stringer interface.

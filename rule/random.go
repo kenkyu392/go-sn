@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-// RandomAlphabet creates a rule that returns a random  alphabet (a-zA-Z)
+// RandomAlphabet creates a rule that returns a random alphabet (a-zA-Z)
 // with the number of characters specified by length.
 func RandomAlphabet(length int) Rule {
 	return func() []rune {
@@ -58,8 +58,8 @@ func RandomNumeric(length int) Rule {
 	}
 }
 
-// RandomAlphabetAndNumeric creates a rule that returns a random alphabet and numeric (a-zA-Z0-9)
-// with the number of characters specified by length.
+// RandomAlphabetAndNumeric creates a rule that returns a random alphabet and
+// numeric (a-zA-Z0-9) with the number of characters specified by length.
 func RandomAlphabetAndNumeric(length int) Rule {
 	return func() []rune {
 		var out = make([]rune, length)
@@ -77,7 +77,7 @@ func RandomAlphabetAndNumeric(length int) Rule {
 	}
 }
 
-// RandomList ...
+// RandomList creates a rule that returns a list value at random.
 func RandomList(list []string) Rule {
 	var length = len(list)
 	return func() []rune {
