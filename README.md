@@ -7,7 +7,7 @@
 
 Go library for generate serial numbers according to rules.
 
-This library is also useful for generating serial numbers in a human-readable format.
+This library is useful for generating serial numbers in human-readable format and for generating dummy data (e.g., email addresses, names of people, etc.).
 
 ## Installation
 
@@ -62,6 +62,36 @@ func main() {
 		ANIMALS_LQ52_Fox_XGmb_0004
 	*/
 }
+```
+
+To generate a dummy email address, you may use the following:
+
+```go
+g := sn.NewGenerator(
+	rule.Mixin(
+		rule.RandomAlphabet(4),
+		rule.String("."),
+		rule.RandomAlphabetAndNumeric(6),
+	),
+	rule.RandomList(
+		[]string{
+			"example.com",
+			"example.net",
+			"example.org",
+		},
+	),
+)
+g.Delimiter = "@"
+for i := 0; i < 5; i++ {
+	fmt.Println(g.String())
+}
+/*
+	Lbtr.99VmO8@example.net
+	Cnat.GAgx19@example.org
+	KvdO.p87x51@example.net
+	UKHv.gtAME8@example.org
+	YTCp.632C96@example.com
+*/
 ```
 
 ## License
