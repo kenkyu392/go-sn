@@ -1,15 +1,15 @@
-package rule
+package rule_test
 
 import (
 	"math/rand"
 	"reflect"
 	"testing"
+
+	"github.com/kenkyu392/go-sn/rule"
 )
 
 func TestRandomAlphabet(t *testing.T) {
-	rand.Seed(0)
-	rule := RandomAlphabet(4)
-	table := [][]rune{
+	testRule(t, rule.RandomAlphabet(4), [][]rune{
 		[]rune("uYIZ"),
 		[]rune("abEa"),
 		[]rune("ScMg"),
@@ -21,18 +21,11 @@ func TestRandomAlphabet(t *testing.T) {
 		[]rune("pOTQ"),
 		[]rune("plYJ"),
 		[]rune("oxfk"),
-	}
-	for i := 0; i < 11; i++ {
-		if got, want := rule(), table[i]; !reflect.DeepEqual(got, want) {
-			t.Errorf("got: %v, want: %v", got, want)
-		}
-	}
+	})
 }
 
 func TestRandomUppercaseAlphabet(t *testing.T) {
-	rand.Seed(0)
-	rule := RandomUppercaseAlphabet(4)
-	table := [][]rune{
+	testRule(t, rule.RandomUppercaseAlphabet(4), [][]rune{
 		[]rune("CUBY"),
 		[]rune("HIZZ"),
 		[]rune("KAKB"),
@@ -44,18 +37,11 @@ func TestRandomUppercaseAlphabet(t *testing.T) {
 		[]rune("VWSH"),
 		[]rune("OIPG"),
 		[]rune("ZMGA"),
-	}
-	for i := 0; i < 11; i++ {
-		if got, want := rule(), table[i]; !reflect.DeepEqual(got, want) {
-			t.Errorf("got: %v, want: %v", string(got), string(want))
-		}
-	}
+	})
 }
 
 func TestRandomLowercaseAlphabet(t *testing.T) {
-	rand.Seed(0)
-	rule := RandomLowercaseAlphabet(4)
-	table := [][]rune{
+	testRule(t, rule.RandomLowercaseAlphabet(4), [][]rune{
 		[]rune("cuby"),
 		[]rune("hizz"),
 		[]rune("kakb"),
@@ -67,18 +53,11 @@ func TestRandomLowercaseAlphabet(t *testing.T) {
 		[]rune("vwsh"),
 		[]rune("oipg"),
 		[]rune("zmga"),
-	}
-	for i := 0; i < 11; i++ {
-		if got, want := rule(), table[i]; !reflect.DeepEqual(got, want) {
-			t.Errorf("got: %v, want: %v", string(got), string(want))
-		}
-	}
+	})
 }
 
 func TestRandomNumeric(t *testing.T) {
-	rand.Seed(0)
-	rule := RandomNumeric(4)
-	table := [][]rune{
+	testRule(t, rule.RandomNumeric(4), [][]rune{
 		[]rune("4436"),
 		[]rune("5677"),
 		[]rune("8887"),
@@ -90,17 +69,11 @@ func TestRandomNumeric(t *testing.T) {
 		[]rune("5483"),
 		[]rune("0094"),
 		[]rune("7468"),
-	}
-	for i := 0; i < 11; i++ {
-		if got, want := rule(), table[i]; !reflect.DeepEqual(got, want) {
-			t.Errorf("got: %v, want: %v", string(got), string(want))
-		}
-	}
+	})
 }
+
 func TestRandomAlphabetAndNumeric(t *testing.T) {
-	rand.Seed(0)
-	rule := RandomAlphabetAndNumeric(4)
-	table := [][]rune{
+	testRule(t, rule.RandomAlphabetAndNumeric(4), [][]rune{
 		[]rune("uY6Z"),
 		[]rune("ab8a"),
 		[]rune("0C80"),
@@ -112,34 +85,29 @@ func TestRandomAlphabetAndNumeric(t *testing.T) {
 		[]rune("PO1q"),
 		[]rune("7LYj"),
 		[]rune("o1F6"),
-	}
-	for i := 0; i < 11; i++ {
-		if got, want := rule(), table[i]; !reflect.DeepEqual(got, want) {
-			t.Errorf("got: %v, want: %v", string(got), string(want))
-		}
-	}
+	})
 }
 
 func TestRandomList(t *testing.T) {
+	testRule(t, rule.RandomList([]string{"Dog", "Cat", "Fox", "Rat"}), [][]rune{
+		[]rune("Fox"),
+		[]rune("Fox"),
+		[]rune("Cat"),
+		[]rune("Fox"),
+		[]rune("Rat"),
+		[]rune("Dog"),
+		[]rune("Rat"),
+		[]rune("Cat"),
+		[]rune("Dog"),
+		[]rune("Dog"),
+		[]rune("Dog"),
+	})
+}
+
+func testRule(t *testing.T, rule rule.Rule, wants [][]rune) {
 	rand.Seed(0)
-	rule := RandomList(
-		[]string{"Dog", "Cat", "Fox", "Rat"},
-	)
-	table := [][]rune{
-		[]rune("Fox"),
-		[]rune("Fox"),
-		[]rune("Cat"),
-		[]rune("Fox"),
-		[]rune("Rat"),
-		[]rune("Dog"),
-		[]rune("Rat"),
-		[]rune("Cat"),
-		[]rune("Dog"),
-		[]rune("Dog"),
-		[]rune("Dog"),
-	}
-	for i := 0; i < 11; i++ {
-		if got, want := rule(), table[i]; !reflect.DeepEqual(got, want) {
+	for _, want := range wants {
+		if got := rule(); !reflect.DeepEqual(got, want) {
 			t.Errorf("got: %v, want: %v", string(got), string(want))
 		}
 	}
