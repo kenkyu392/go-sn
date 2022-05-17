@@ -1,16 +1,18 @@
-package rule
+package rule_test
 
 import (
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/kenkyu392/go-sn/rule"
 )
 
 func TestTime(t *testing.T) {
-	timeNow = func() time.Time {
+	rule.SetTimeNow(func() time.Time {
 		return time.Date(2021, 1, 1, 1, 1, 1, 1, time.UTC)
-	}
-	got := Time(time.RFC3339Nano)()
+	})
+	got := rule.Time(time.RFC3339Nano)()
 	want := []rune("2021-01-01T01:01:01.000000001Z")
 	if !reflect.DeepEqual(got, want) {
 		t.Errorf("got: %v, want: %v", got, want)
@@ -18,12 +20,12 @@ func TestTime(t *testing.T) {
 }
 
 func TestUnixXXXX(t *testing.T) {
-	timeNow = func() time.Time {
+	rule.SetTimeNow(func() time.Time {
 		return time.Date(2021, 1, 1, 1, 1, 1, 1, time.UTC)
-	}
+	})
 
 	t.Run("case=UnixNano", func(t *testing.T) {
-		got := UnixNano()()
+		got := rule.UnixNano()()
 		want := []rune("1609462861000000001")
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got: %v, want: %v", got, want)
@@ -31,7 +33,7 @@ func TestUnixXXXX(t *testing.T) {
 	})
 
 	t.Run("case=UnixMicro", func(t *testing.T) {
-		got := UnixMicro()()
+		got := rule.UnixMicro()()
 		want := []rune("1609462861000000")
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got: %v, want: %v", got, want)
@@ -39,7 +41,7 @@ func TestUnixXXXX(t *testing.T) {
 	})
 
 	t.Run("case=UnixMilli", func(t *testing.T) {
-		got := UnixMilli()()
+		got := rule.UnixMilli()()
 		want := []rune("1609462861000")
 		if !reflect.DeepEqual(got, want) {
 			t.Errorf("got: %v, want: %v", got, want)

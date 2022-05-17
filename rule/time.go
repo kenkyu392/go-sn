@@ -7,6 +7,11 @@ import (
 
 var timeNow = time.Now
 
+// SetTimeNow ...
+func SetTimeNow(t func() time.Time) {
+	timeNow = t
+}
+
 // Time ...
 func Time(layout string) Rule {
 	return func() []rune {
