@@ -12,9 +12,7 @@ import (
 func TestNumbering(t *testing.T) {
 	rule := rule.Numbering()
 	for i := 0; i < 11; i++ {
-		got := rule()
-		want := []rune(strconv.Itoa(i))
-		if !reflect.DeepEqual(got, want) {
+		if got, want := rule(), []rune(strconv.Itoa(i)); !reflect.DeepEqual(got, want) {
 			t.Errorf("got: %v, want: %v", got, want)
 		}
 	}
@@ -23,9 +21,7 @@ func TestNumbering(t *testing.T) {
 func TestNumberingWithPadding(t *testing.T) {
 	rule := rule.NumberingWithPadding(6)
 	for i := 0; i < 11; i++ {
-		got := rule()
-		want := []rune(fmt.Sprintf("%06d", i))
-		if !reflect.DeepEqual(got, want) {
+		if got, want := rule(), []rune(fmt.Sprintf("%06d", i)); !reflect.DeepEqual(got, want) {
 			t.Errorf("got: %v, want: %v", got, want)
 		}
 	}
@@ -53,13 +49,11 @@ func TestCounter(t *testing.T) {
 			Size:    2,
 			Padding: 4,
 		}
-		testRule(t, c.NumberingWithPadding(), [][]rune{
-			[]rune("0002"),
-			[]rune("0004"),
-			[]rune("0006"),
-			[]rune("0008"),
-			[]rune("0010"),
-			[]rune("0012"),
-		})
+		a := c.NumberingWithPadding()
+		for i := 2; i < 14; i += 2 {
+			if got, want := a(), []rune(fmt.Sprintf("%04d", i)); !reflect.DeepEqual(got, want) {
+				t.Errorf("got: %v, want: %v", got, want)
+			}
+		}
 	})
 }
