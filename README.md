@@ -1,6 +1,7 @@
 # go-sn - Serial Number Generator
 
 [![Go](https://github.com/kenkyu392/go-sn/actions/workflows/go.yml/badge.svg)](https://github.com/kenkyu392/go-sn/actions/workflows/go.yml)
+[![codecov](https://codecov.io/gh/kenkyu392/go-sn/branch/main/graph/badge.svg)](https://codecov.io/gh/kenkyu392/go-sn)
 [![go.dev reference](https://img.shields.io/badge/go.dev-reference-00ADD8?logo=go)](https://pkg.go.dev/github.com/kenkyu392/go-sn)
 [![Go Report Card](https://goreportcard.com/badge/github.com/kenkyu392/go-sn)](https://goreportcard.com/report/github.com/kenkyu392/go-sn)
 [![license](https://img.shields.io/github/license/kenkyu392/go-sn)](LICENSE)
