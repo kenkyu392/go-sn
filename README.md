@@ -95,6 +95,33 @@ for i := 0; i < 5; i++ {
 */
 ```
 
+## Rules
+
+This package includes the standard generator rules.
+
+| Rule | Description |
+| --- | --- |
+| Numbering | Auto-increment number |
+| NumberingWithPadding | Zero-padded auto-increment number |
+| RandomAlphabet | Random alphabet |
+| RandomUppercaseAlphabet | Random uppercase alphabet |
+| RandomLowercaseAlphabet | Random lowercase alphabet |
+| RandomNumeric | Random numeric |
+| RandomAlphabetAndNumeric | Random alphabet and numeric |
+| RandomHiragana | Random hiragana |
+| RandomKatakana | Random katakana |
+| RandomList | Random use of items in the list |
+| Repeat | Repeat use items in the list in order |
+| String | String |
+| Time | Time in any format |
+| Unix | Unix time seconds |
+| UnixMilli | Unix time milliseconds |
+| UnixMicro | Unix time microseconds |
+| UnixNano | Unix time nanoseconds |
+| Year | Year |
+| Mixin | Combine multiple rules |
+
+
 ## License
 
 [MIT](LICENSE)
