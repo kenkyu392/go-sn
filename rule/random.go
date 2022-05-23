@@ -84,3 +84,27 @@ func RandomList(list []string) Rule {
 		return []rune(list[rand.Intn(length)])
 	}
 }
+
+// RandomHiragana ...
+func RandomHiragana(length int) Rule {
+	var hiragana = []rune("あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん")
+	return func() []rune {
+		var out = make([]rune, length)
+		for i := 0; i < length; i++ {
+			out[i] = hiragana[rand.Intn(46)]
+		}
+		return out
+	}
+}
+
+// RandomKatakana ...
+func RandomKatakana(length int) Rule {
+	var katakana = []rune("アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン")
+	return func() []rune {
+		var out = make([]rune, length)
+		for i := 0; i < length; i++ {
+			out[i] = katakana[rand.Intn(46)]
+		}
+		return out
+	}
+}

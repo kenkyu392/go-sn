@@ -104,6 +104,38 @@ func TestRandomList(t *testing.T) {
 	})
 }
 
+func TestRandomHiragana(t *testing.T) {
+	testRule(t, rule.RandomHiragana(4), [][]rune{
+		[]rune("もまにあ"),
+		[]rune("くけしい"),
+		[]rune("おすらく"),
+		[]rune("ほまらち"),
+		[]rune("つちもら"),
+		[]rune("ふろあま"),
+		[]rune("ふをるな"),
+		[]rune("えけんな"),
+		[]rune("たぬおせ"),
+		[]rune("ものこへ"),
+		[]rune("ふあなろ"),
+	})
+}
+
+func TestRandomKatakana(t *testing.T) {
+	testRule(t, rule.RandomKatakana(4), [][]rune{
+		[]rune("モマニア"),
+		[]rune("クケシイ"),
+		[]rune("オスラク"),
+		[]rune("ホマラチ"),
+		[]rune("ツチモラ"),
+		[]rune("フロアマ"),
+		[]rune("フヲルナ"),
+		[]rune("エケンナ"),
+		[]rune("タヌオセ"),
+		[]rune("モノコヘ"),
+		[]rune("フアナロ"),
+	})
+}
+
 func testRule(t *testing.T, rule rule.Rule, wants [][]rune) {
 	rand.Seed(0)
 	for _, want := range wants {
