@@ -19,10 +19,17 @@ func Time(layout string) Rule {
 	}
 }
 
-// UnixNano ...
-func UnixNano() Rule {
+// Unix ...
+func Unix() Rule {
 	return func() []rune {
-		return []rune(strconv.Itoa(int(timeNow().UnixNano())))
+		return []rune(strconv.Itoa(int(timeNow().Unix())))
+	}
+}
+
+// UnixMilli ...
+func UnixMilli() Rule {
+	return func() []rune {
+		return []rune(strconv.Itoa(int(timeNow().UnixMilli())))
 	}
 }
 
@@ -33,9 +40,16 @@ func UnixMicro() Rule {
 	}
 }
 
-// UnixMilli ...
-func UnixMilli() Rule {
+// UnixNano ...
+func UnixNano() Rule {
 	return func() []rune {
-		return []rune(strconv.Itoa(int(timeNow().UnixMilli())))
+		return []rune(strconv.Itoa(int(timeNow().UnixNano())))
+	}
+}
+
+// Year ...
+func Year() Rule {
+	return func() []rune {
+		return []rune(strconv.Itoa(timeNow().Year()))
 	}
 }
