@@ -1,9 +1,11 @@
 package rule
 
-import "sync/atomic"
+import (
+	"sync/atomic"
+)
 
-// Repeat creates a rule that repeatedly returns the items of a list in order.
-func Repeat(list []string) Rule {
+// RepeatList creates a rule that repeatedly returns the items of a list in order.
+func RepeatList(list []string) Rule {
 	var n int64 = 0
 	return func() []rune {
 		index := atomic.LoadInt64(&n)
@@ -14,4 +16,11 @@ func Repeat(list []string) Rule {
 		}
 		return []rune(list[index])
 	}
+}
+
+// Repeat creates a rule that repeatedly returns the items of a list in order.
+// Deprecated: Repeat exists for historical compatibility and should not be used.
+// RepeatList should be used instead.
+func Repeat(list []string) Rule {
+	return RepeatList(list)
 }
