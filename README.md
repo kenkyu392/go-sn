@@ -111,7 +111,7 @@ This package includes the standard generator rules.
 | RandomHiragana | Random hiragana |
 | RandomKatakana | Random katakana |
 | RandomList | Random use of items in the list |
-| Repeat | Repeat use items in the list in order |
+| RepeatList | Repeat use items in the list in order |
 | String | String |
 | Time | Time in any format |
 | Unix | Unix time seconds |
